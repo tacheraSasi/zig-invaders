@@ -26,7 +26,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const raylib = raylib_dep.module;
+    const raylib = raylib_dep.module("raylib");
     const raylib_artifact = raylib_dep.artifact("raylib");
 
     // This creates a module, which represents a collection of source files alongside
@@ -87,9 +87,12 @@ pub fn build(b: *std.Build) void {
                 // can be extremely useful in case of collisions (which can happen
                 // importing modules from different packages).
                 .{ .name = "invaders", .module = mod },
+                .{ .name = "raylib", .module = raylib },
             },
         }),
     });
+
+    exe.linkLibrary(raylib_artifact);
 
     // This declares intent for the executable to be installed into the
     // install prefix when running `zig build` (i.e. when executing the default
