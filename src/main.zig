@@ -1,7 +1,10 @@
-const std = @import("std");
-const invaders = @import("invaders");
+const rl = @import("raylib");
 
 pub fn main() !void {
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-    try invaders.bufferedPrint();
+    const screenWidth = 800;
+    const screenHeight = 600;
+
+    rl.initWindow(screenWidth, screenHeight, "Zig Raylib Example");
+
+    defer rl.closeWindow();
 }
