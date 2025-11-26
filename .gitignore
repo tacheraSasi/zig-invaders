@@ -1,1 +1,2 @@
+zig-out/bin/**
 .zig-cache/
